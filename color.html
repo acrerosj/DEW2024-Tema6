@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Color</h1>
+  <p>Elige un color de fondo y almacenalo</p>
+  <p>Color:
+    <input type="color" name="" id="color">
+  </p>
+  <script>
+    const colorInput = document.getElementById('color');
+
+    if (localStorage.color) {
+      document.body.style.backgroundColor = localStorage.color;
+      colorInput.value = localStorage.color;
+    }
+
+    colorInput.addEventListener('input', () => {
+      document.body.style.backgroundColor = colorInput.value;
+      localStorage.color = colorInput.value;
+    })
+  </script>
+</body>
+</html>
