@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Almacenar instancias de una clase</h1>
+  <script>
+    class Person {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+
+      birthday() { this.age++ }
+
+      toString() {
+        return `${this.name} tiene ${this.age} años.`;
+      }
+
+      static create(person) {
+        return new Person(person.name, person.age);
+      }
+    }
+
+    let p1 = new Person('Ana', 28);
+    p1.birthday();
+    console.log(p1);
+    const p = document.createElement('p');
+    p.textContent = p1;
+    document.body.append(p);
+
+    localStorage.instancia = JSON.stringify(p1);
+
+    // p2 es un objeto pero no es instancia de Persona.
+    let p2 = JSON.parse(localStorage.instancia);
+
+    // p3, p4 y p5 si son personas con diferentes formas de creación.
+    let p3 = new Person(p2.name, p2.age);
+    let p4 = Object.assign(new Person, p2);
+    let p5 = Person.create(JSON.parse(localStorage.instancia));
+  </script>
+</body>
+</html>
