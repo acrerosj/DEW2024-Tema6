@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Diagrama de quesitos</h1>
+  <canvas id="diag" width="200" height="200"></canvas>
+  <script>
+    const data = [10,20,5,18,3,14];
+    const diag = document.getElementById('diag');
+    const colors = ['red', 'green', 'blue', 'yellow', 'purple', 'orange'];
+
+    function showDiagCircle(data) {
+      const maxValue = Math.max(...data);
+      const countData = data.length;
+      
+      const total = data.reduce((a,e) => a+e, 0);
+      console.log(total);
+      const arcFactor = Math.PI*2 / total;
+
+      if (diag.getContext) {
+        ctx = diag.getContext("2d");
+        ctx.clearRect(0, 0, diag.width, diag.height);
+        
+        let begin = 0;
+        for (let index = 0; index < countData-5; index++) {
+          ctx.fillStyle = colors[index % colors.length];
+          finish = arcFactor * data[index];
+          ctx.arc(diag.width/2, diag.height/2, diag.width/2, begin, finish, true);
+          ctx.fill();
+          begin = finish;
+        }
+      }
+    }
+
+    showDiagCircle(data);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    panel-person {
+      color: navy;
+      display: block;
+      background-color: antiquewhite;
+      margin: 5px;
+      width: 100px;
+      text-align: center;
+      float: left;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>WebComponent</h1>
+  <panel-person name="Pepe" surname="Pepón" age="25"></panel-person>
+  <panel-person age="33" surname="Álvarez" name="Susana"></panel-person>
+  <script>
+    class PanelPerson extends HTMLElement {
+      constructor() {
+        super();
+        this.name = document.createElement('p');
+        this.name.textContent = this.getAttribute('name');
+        this.surname = document.createElement('p');
+        this.surname.textContent = this.getAttribute('surname');
+        this.age = document.createElement('h2');
+        this.age.textContent = this.getAttribute('age');
+        this.append(this.name, this.surname, this.age);
+        this.age.addEventListener('click', () => {
+          console.log("pulsado...")
+          let age =  this.getAttribute('age');
+          age++;
+          this.setAttribute('age', age);
+          this.age.textContent = age;
+        });
+      }
+    }
+
+    customElements.define("panel-person", PanelPerson);
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+      box-shadow: 5px 5px 5px grey;
+    }
+  </style>
+</head>
+<body>
+  <h1>Probando el canvas</h1>
+  <canvas id="canvas" width="500" height="400"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas');
+
+    if (canvas.getContext) {
+      const ctx = canvas.getContext("2d");
+
+      ctx.fillStyle = "rgb(200, 0 , 0)";
+      ctx.fillRect(10, 10, 50, 50);
+      ctx.fillStyle = "rgb(0, 0 , 100)";
+      ctx.fillRect(60,60,100,100);
+
+      ctx.beginPath()
+      ctx.moveTo(200, 200);
+      ctx.lineTo(300, 200);
+      ctx.lineTo(350, 250);
+      ctx.lineTo(275, 275);
+      ctx.closePath();
+      ctx.strokeStyle = "rgb(0 200 0)";
+      ctx.stroke();
+    }
+  </script>
+</body>
+</html>

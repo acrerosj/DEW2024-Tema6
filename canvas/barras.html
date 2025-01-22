@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Diagrama de barras</h1>
+  <canvas id="diag" width="200" height="200"></canvas>
+  <script>
+    const data = [10,20,5,18,3,14];
+    const diag = document.getElementById('diag');
+    const colors = ['red', 'green', 'blue', 'yellow', 'purple', 'orange'];
+
+    function showDiagBar(data) {
+      const maxValue = Math.max(...data);
+      const countData = data.length;
+      
+      const widthBar = parseInt(diag.width / countData);
+      const heightFactor = parseInt(diag.height / maxValue);
+      
+      if (diag.getContext) {
+        ctx = diag.getContext("2d");
+        ctx.clearRect(0, 0, diag.width, diag.height);
+        
+        for (let index = 0; index < countData; index++) {
+          ctx.fillStyle = colors[index % colors.length];
+          console.log(index, widthBar * index,diag.height, widthBar, -data[index]*heightFactor)
+          ctx.fillRect(widthBar * index,diag.height, widthBar, -data[index]*heightFactor);
+        }
+      }
+    }
+
+    showDiagBar(data);
+
+  </script>
+</body>
+</html>
